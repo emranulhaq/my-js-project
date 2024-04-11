@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #calculator {
+        width: 200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    input[type="number"], input[type="submit"] {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div id="calculator">
+    <form onsubmit="calculate(event)">
+        <input type="number" id="num1" placeholder="Enter first number" required><br>
+        <input type="number" id="num2" placeholder="Enter second number" required><br>
+        <input type="submit" value="Add">
+        <input type="submit" value="Subtract">
+        <input type="submit" value="Multiply">
+        <input type="submit" value="Divide">
+    </form>
+    <p id="result"></p>
+</div>
+
+<script>
+    function calculate(event) {
+        event.preventDefault();
+        var num1 = parseFloat(document.getElementById('num1').value);
+        var num2 = parseFloat(document.getElementById('num2').value);
+        var operation = event.submitter.value;
+        var result;
+        switch(operation) {
+            case "Add":
+                result = num1 + num2;
+                break;
+            case "Subtract":
+                result = num1 - num2;
+                break;
+            case "Multiply":
+                result = num1 * num2;
+                break;
+            case "Divide":
+                result = num2 !== 0 ? num1 / num2 : "Infinity";
+                break;
+            default:
+                result = "Invalid operation";
+        }
+        document.getElementById('result').textContent = "Result: " + result;
+    }
+</script>
+
+</body>
+</html>
